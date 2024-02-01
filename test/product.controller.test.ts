@@ -40,5 +40,14 @@ describe('product controller', () => {
 
             expect(ProductService.prototype.add).toBeCalledWith({name: 'pasta', price: '0.80'})
         });
+
+        it('should return 400 when product is not valid', () => {
+            request.body = {product: "not valid product"}
+
+            ProductController.add(request, response)
+
+            expect(response.statusCode).toBe(400)
+            expect(response._getJSONData()).toHaveProperty('message', 'product not valid')
+        });
     });
 });
