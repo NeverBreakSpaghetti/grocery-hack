@@ -7,3 +7,9 @@ export const isValid = (product: productDto): boolean => {
         return false
     return product.name !== undefined && product.price !== undefined
 }
+export const mapToProductDto = (object: any): productDto => {
+    return {
+        name: object.name,
+        price: object.price
+    } as productDto
+}
